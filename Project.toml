@@ -1,0 +1,16 @@
+name = "Replace"
+uuid = "93a0aa80-fab4-4373-9dd2-69ba9a9ae607"
+authors = ["Cook, James <cookjws@gmail.com>"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[deps]
+Cassette = "7057c7e9-c182-5462-911a-8362d720325c"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
