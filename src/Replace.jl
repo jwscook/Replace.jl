@@ -16,9 +16,9 @@ export @replace
 """
 macro replace(this, forthat, inhere)
   @eval Cassette.@context Ctx
+  @eval Cassette.overdub(ctx::Ctx, fn::typeof($this), args...) = ctx.metadata(args...)
   quote
     _replace(f, $(esc(forthat))) = Cassette.overdub(Ctx(metadata=$(esc(forthat))), f)
-    Cassette.overdub(ctx::Ctx, fn::typeof($(esc(this))), args...) = ctx.metadata(args...)
     _replace(() -> $(esc(inhere)), $(esc(forthat)))
   end
 end
