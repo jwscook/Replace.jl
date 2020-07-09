@@ -18,8 +18,23 @@ macro replace(this, forthat, inhere)
   @eval Cassette.@context Ctx
   @eval Cassette.overdub(ctx::Ctx, fn::typeof($this), args...) = ctx.metadata(args...)
   quote
-    _replace(f, $(esc(forthat))) = Cassette.overdub(Ctx(metadata=$(esc(forthat))), f)
-    _replace(() -> $(esc(inhere)), $(esc(forthat)))
+    Cassette.overdub(Ctx(metadata=$(esc(forthat))), () -> $(esc(inhere)))
+  end
+end
+
+function _replace!(ctx::T, mapping) where T
+  for (key, value) in mapping
+    @eval Cassette.overdub(ctx::$T, fn::typeof($key), args...) = $value(args...)
+  end
+  return ctx
+end
+
+macro replace(mapping, ex)
+  @eval Cassette.@context Ctx
+  quote
+    ctx = Ctx()
+    _replace!(ctx, $(esc(mapping)))
+    Cassette.overdub(ctx, () -> $(esc(ex)))
   end
 end
 

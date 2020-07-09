@@ -10,6 +10,12 @@ using Test
 
   replacement() = pi
   @test pi + exp(0) == @replace rand replacement rand() + exp(0)
+
+  x, y = rand(2)
+  mapping = Dict(cos=>sin, tan=>exp)
+  f(x, y) = sin(x) + exp(y)
+  g(x, y) = cos(x) + tan(y)
+  @test f(x, y) == @replace mapping g(x, y)
 end
 
 @testset "Inside a function" begin
@@ -17,6 +23,12 @@ end
     x = @replace cos sin cos(0.0)
   end
   @test foo() == 0.0
+
+  function bar()
+    x = @replace Dict(tan=>exp) tan(1.0)
+  end
+  @test bar() == exp(1.0)
 end
+
 
 end
