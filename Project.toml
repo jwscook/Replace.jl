@@ -1,7 +1,7 @@
 name = "Replace"
 uuid = "93a0aa80-fab4-4373-9dd2-69ba9a9ae607"
 authors = ["Cook, James <cookjws@gmail.com>"]
-version = "0.1.1"
+version = "0.2.0"
 
 [compat]
 julia = "1"
