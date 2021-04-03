@@ -4,6 +4,8 @@
 [![codecov](https://codecov.io/gh/ScottishCovidResponse/Replace.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/ScottishCovidResponse/Replace.jl)
 
 
+**This is an UNSUCCESSFUL attempt to produce ...**
+
 A macro, @replace, that replaces one function with another in an expression
 
 ```julia
